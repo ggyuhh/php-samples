@@ -1,4 +1,43 @@
 <?php
+<?php
+ob_start();
+$API_KEY = "1723937378:AAFSYsZx3KlSSDpQB96nd50gEMYuThAiC0U";
+define('API_KEY',$API_KEY);
+echo file_get_contents("https://api.telegram.org/bot" . API_KEY . "/setwebhook?url=" . $_SERVER['SERVER_NAME'] . "" . $_SERVER['SCRIPT_NAME']);
+function bot($method,$datas=[]){
+$url = "https://api.telegram.org/bot".API_KEY."/".$method."?".http_build_query($datas);
+return json_decode(file_get_contents($url));
+}
+$update = json_decode(file_get_contents('php://input'));
+$message = $update->message;
+$chat_id = $message->chat->id;
+$text = $message->text;
+$chat_id2 = $update->callback_query->message->chat->id;
+$message_id = $update->callback_query->message->message_id;
+$data = $update->callback_query->data;
+$name = $update->message->from->first_name;
+$from_id = $update->message->from->id;
+$admin = "767562522"; 
+$MROAN = file_get_contents("MROAN.txt");
+$MROAN0 = file_get_contents("MROAN0.txt");
+$MROAN1= file_get_contents("MROAN1.txt");
+$MROAN5 = file_get_contents("MROAN2.txt");
+$MROAN6 = file_get_contents("MROAN3.txt");
+$MROAN20 = json_decode(file_get_contents('php://input'));
+$MROAN18 = $update->message;
+$MROAN13 = $MROAN18->chat->id;
+$MROAN17 = $MROAN18->text;
+$meme = $MROAN20->callback_query->data;
+$MROAN12 = $MROAN20->callback_query->message->chat->id;
+$MROAN14 =  $MROAN20->callback_query->message->message_id;
+$MROAN15 = $MROAN18->from->first_name;
+$MROAN16 = $MROAN18->from->username;
+$MROAN11 = $MROAN18->from->id;
+$MROAN2 = explode("\n",file_get_contents("MROAN4.txt"));
+$MROAN3 = count($MROAN2)-1;
+if ($MROAN18 && !in_array($MROAN11, $MROAN2)) {
+    file_put_contents("MROAN4.txt", $MROAN11."\n",FILE_APPEND);
+  }
 /**
  * Copyright 2018 Google Inc.
  *
